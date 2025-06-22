@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "438684632160",
+    "project_id": "firmfocusv1",
+    "storage_bucket": "firmfocusv1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438684632160:android:322f40679e3bee7a912f05",
+        "android_client_info": {
+          "package_name": "com.s22010342.firmfous"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi0ap5hkhdl1vJgSFDbvw1lzXGcBpWLvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
