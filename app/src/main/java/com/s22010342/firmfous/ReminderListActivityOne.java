@@ -1,6 +1,7 @@
 package com.s22010342.firmfous;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -40,6 +41,14 @@ public class ReminderListActivityOne extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         loadRemindersFromFirebase();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userOrgCode = extras.getString("organization_code");
+           Log.d("ReminderModuleActivity", "Global Org Code : " + userOrgCode);
+
+        }
+
     }
 
     private void loadRemindersFromFirebase() {

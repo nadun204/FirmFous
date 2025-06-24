@@ -2,6 +2,7 @@ package com.s22010342.firmfous;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView redirectToSignUp ;
     EditText loginName,loginPassword;
     Button login_btn;
+    private String organizationCodeGlobal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
 
         //login button
 
@@ -74,6 +79,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public String getOrganizationCodeGlobal() {
+        return organizationCodeGlobal;
+    }
+
+    public void setOrganizationCodeGlobal(String organizationCodeGlobal) {
+        this.organizationCodeGlobal = organizationCodeGlobal;
     }
 
 public Boolean validateUsername(){
@@ -124,6 +137,8 @@ public Boolean validateUsername(){
 
                             String nameFromDB = userSnapshot.child("name").getValue(String.class);
                             String orgCodeFromDB = userSnapshot.child("organization_code").getValue(String.class);
+                           // organizationCodeGlobal = userSnapshot.child("organization_code").getValue(String.class);
+
 
                             // login sucessfully, loaf=d the next activity
                             Intent intent = new Intent(LoginActivity.this, ReminderModuleActivity.class);
@@ -134,6 +149,7 @@ public Boolean validateUsername(){
 
 
                             startActivity(intent);
+
                             finish(); // Finish LoginActivity  user can't go back
                             return; // Exit the listener
                         }
@@ -156,5 +172,8 @@ public Boolean validateUsername(){
                 Toast.makeText(LoginActivity.this, "Database Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();            }
         });
 
+
+
     }
+
 }
