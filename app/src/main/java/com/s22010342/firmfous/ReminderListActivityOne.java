@@ -24,7 +24,7 @@ public class ReminderListActivityOne extends AppCompatActivity {
     private ReminderAdapter adapter;
     private List<Reminder> reminderList;
     private FirebaseFirestore db;
-    private String userOrgCode = "ORG123"; // Replace with actual org code from login
+    private String userOrgCode; //  org code from login
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

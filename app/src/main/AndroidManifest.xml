@@ -26,11 +26,7 @@
         <activity
             android:name=".AddReminderActivity"
             android:exported="false" />
-        <activity
-            android:name=".ReminderModuleMainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_reminder_module_main"
-            android:theme="@style/Theme.FirmFous.NoActionBar" />
+
         <activity
             android:name=".UiTestActivity"
             android:exported="false" />

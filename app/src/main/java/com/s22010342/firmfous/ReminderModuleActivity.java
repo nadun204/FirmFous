@@ -36,7 +36,7 @@ public class ReminderModuleActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         NavigationView navigationView = binding.navView; //Get the NavigationView from your binding
-        View headerView = navigationView.getHeaderView(0);//Get the header view from the NavigationView 0 is 1st one
+        View headerView = navigationView.getHeaderView(0);//Get the header view from the NavigationView
         TextView nameTextView = headerView.findViewById(R.id.setTextName);
         TextView orgTextView = headerView.findViewById(R.id.textOrgCode);
 
@@ -103,7 +103,7 @@ public class ReminderModuleActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // adds items to the action bar.
         getMenuInflater().inflate(R.menu.reminder_module, menu);
         return true;
     }

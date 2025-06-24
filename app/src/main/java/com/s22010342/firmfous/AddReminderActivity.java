@@ -46,7 +46,7 @@ public class AddReminderActivity extends AppCompatActivity {
         dateInput.setOnClickListener(v -> showDatePicker());
         timeInput.setOnClickListener(v -> showTimePicker());
 
-        //  Get the Bundle of extras from the Intent that started this activity
+        //  Get the Bundle of extras from the Intent
         Bundle extras = getIntent().getExtras();
         String orgCodeFromLogin = extras.getString("organization_code");
         orgCode =orgCodeFromLogin; // asign user org code to variable
@@ -88,7 +88,7 @@ public class AddReminderActivity extends AppCompatActivity {
     }
 
     void saveReminder() {
-        // --- Step 1: Validate all required text fields ---
+        // Validate all required text fields ---
         if (orgCode == null || orgCode.isEmpty()) {
             Toast.makeText(this, "Error: Organization Code not found. Please log in again.", Toast.LENGTH_LONG).show();
             return;
@@ -103,17 +103,17 @@ public class AddReminderActivity extends AppCompatActivity {
         Toast.makeText(this, "Saving reminder...", Toast.LENGTH_SHORT).show();
         saveReminderBtn.setEnabled(false);
 
-        // --- Step 2: Decide which path to take based on imageUri ---
+        //Decide which path to take based on imageUri ---
         if (imageUri != null) {
-            // Path A: An image was selected. Upload it first.
+            // An image was selected. Upload it first.
             uploadImageThenSaveData();
         } else {
-            // Path B: No image was selected. Save data directly with an empty URL.
+            //No image was selected. Save data directly with an empty URL.
             saveDataToFirestore("");
         }
     }
 
-    // This method handles the image upload process
+    // handles the image upload process
     private void uploadImageThenSaveData() {
         // Create a unique path for the image in Firebase Storage
         StorageReference ref = FirebaseStorage.getInstance().getReference("reminders/" + orgCode + "/" + UUID.randomUUID().toString());
@@ -122,18 +122,18 @@ public class AddReminderActivity extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     // Image upload was successful, now get its public URL
                     ref.getDownloadUrl().addOnSuccessListener(uri -> {
-                        // With the URL, call the method to save everything to Firestore
+                        //call the method to save everything to Firestore
                         saveDataToFirestore(uri.toString());
                     });
                 })
                 .addOnFailureListener(e -> {
-                    // If image upload fails, show an error and re-enable the button
+                    // If image upload fails
                     Toast.makeText(AddReminderActivity.this, "Failed to upload image: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     saveReminderBtn.setEnabled(true);
                 });
     }
 
-    // This single method handles saving data to Firestore, accepting an imageUrl
+    //   saving data to Firestore,
     private void saveDataToFirestore(String imageUrl) {
         // Get all text field values
         String title = titleInput.getText().toString().trim();
@@ -149,7 +149,7 @@ public class AddReminderActivity extends AppCompatActivity {
         reminder.put("location", location);
         reminder.put("date", date);
         reminder.put("time", time);
-        reminder.put("imageUrl", imageUrl); // This will be the REAL URL or an EMPTY STRING ""
+        reminder.put("imageUrl", imageUrl); // This will be the REAL URL  Oe EMPTY STRING ""
         reminder.put("status", "ongoing");
         reminder.put("timestamp", System.currentTimeMillis());
 
@@ -160,10 +160,10 @@ public class AddReminderActivity extends AppCompatActivity {
                 .add(reminder)
                 .addOnSuccessListener(docRef -> {
                     Toast.makeText(this, "Reminder saved successfully!", Toast.LENGTH_SHORT).show();
-                    finish(); // Close the activity and go back
+                    finish(); // Close the activity
                 })
                 .addOnFailureListener(e -> {
-                    // If saving to Firestore fails, show an error and re-enable the button
+                    // If saving to Firestore fails, show an error
                     Toast.makeText(AddReminderActivity.this, "Failed to save data: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     saveReminderBtn.setEnabled(true);
                 });

@@ -10,8 +10,7 @@ public class Reminder {
     private String imageUrl;
     private String status;
 
-    public Reminder() {} // Required for Firebase
-
+    public Reminder() {}
     public Reminder(String id, String title, String description, String date, String time,
                     String location, String imageUrl, String status) {
         this.id = id;
