@@ -39,7 +39,7 @@ public class DataBaseHelperClass {
         this.username = username;
     }
 
-    public DataBaseHelperClass(String name, String organization_code, String password, String username) {
+    public DataBaseHelperClass(String name, String organization_code, String username, String password) {
         this.name = name;
         this.organization_code = organization_code;
         this.password = password;
